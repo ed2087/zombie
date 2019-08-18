@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ZroadKill</title>
+  <link rel="stylesheet" href="styles/master-styles/Master-Styles.css">
+  <link rel="stylesheet" href="styles/master-styles/Normalize.css">
+</head>
+<body>
+
+  <div class="startMenu flex_center center">
+    <div class="shade"> </div>
+      <video loop muted autoplay poster="img/videoframe.jpg" class="video">
+          <source src="video/horror.mp4" type="video/mp4">
+      </video>
+      <div class="starMenuInner_wrap flex center">
+          <h1 id="h1_title">Deadmageddon</h1>
+          <h2 id="h2_title">Choose Your Difficulty Level</h2>
+          <div class="menuOption_wrap flex">
+              <button id="startButton" type="button" name="start" onclick="dificulty(1)">I Love To Cheat</button>
+              <button id="startButton" type="button" name="start" onclick="dificulty(2)">Piece of Cake - ( Easy )</button>
+              <button id="startButton" type="button" name="start" onclick="dificulty(3)">Weekend Warrior - ( Normal )</button>
+              <button id="startButton" type="button" name="start" onclick="dificulty(4)">Son of Sparda - ( Heroic )</button>
+              <button id="startButton" type="button" name="start" onclick="dificulty(5)">Zombie Slayer - ( Legendary )</button>
+          </div>
+      </div>
+  </div>
+
+  <div class="gameEndWrap flex_center center">
+      <div class="gameEnd_inner">
+          <h2 class="getGameEnding">text</h2>
+          <ul class="gameInfoWrap">
+               <li>
+                 <h2>Level = <span id="Zlevel"> 0</span></h2>
+               </li>
+               <li>
+                 <h2>Zombies Killed = <span id="Zkilled"> 0</span> </h2>
+               </li>
+               <li>
+                 <h2>Total Zombies Killed = <span id="TotalZkilled"> 0</span> </h2>
+               </li>
+               <li>
+                 <h2>Your Score this level = <span id="Zscore"> 0</span></h2>
+               </li>
+               <li>
+                 <h2>Total Score = <span id="totalZscore"> 0</span></h2>
+               </li>
+               <li>
+                 <h2>Extra bullet Count = <span id="ZextraP"> 0</span> </h2>
+               </li>
+          </ul>
+          <button class="menuButtons" id="nextB" type="button" name="next" onclick="settings()">Next Level</button>
+          <button class="menuButtons" id="Reset" type="button" name="next" onclick="location.reload();">Reset</button>
+      </div>
+  </div>
+
+  <div class="master_wrap flex">
+
+    <!--
+       /////////////// TOP MENU ////////////////
+     -->
+
+    <div class="bompers user_info_wrap flex_center">
+      <ul class="info_ul_wrap">
+        <span class="infoText">Ammo</span>
+        <li class="ammoEle">100</li>
+      </ul>
+      <ul class="info_ul_wrap">
+        <span class="infoText">Score</span>
+        <li class="userScore">0</li>
+      </ul>
+      <ul class="info_ul_wrap">
+        <span class="infoText">Level</span>
+        <li class="userLevel">1</li>
+      </ul>
+      <ul class="info_ul_wrap">
+        <span class="infoText">Hord Size</span>
+        <li class="pointsNextLevel">10</li>
+      </ul>
+      <ul class="info_ul_wrap">
+        <span class="infoText">Zombies Killed</span>
+        <li class="killed">0</li>
+      </ul>
+      <ul class="info_ul_wrap" id="moneyWrap">
+        <span class="infoText">Money earned</span>
+        <li class="zCreationSpeed">&dollar;50</li>
+      </ul>
+      <ul class="info_ul_wrap">
+        <span class="infoText">Lifes</span>
+        <li class="LifeText">3 &hearts;</li>
+      </ul>
+    </div><!-- NOTE: user_info_wrap -->
+
+    <!--
+       /////////////// ROAD CANVAS AND ALL ROAD RELATED STUFF ////////////////
+     -->
+
+    <div class="gameCanvas_wrap">
+
+       <div class="Road">
+         <!-- NOTE: announcements -->
+            <h1 class="announcements center"></h1>
+
+            <!-- NOTE: explosion -->
+           <div class="exploxion_wrap center">
+               <img src="game-images/zombies/explosion.gif" alt="explosion">
+           </div>
+
+           <!-- NOTE: cannon -->
+           <div class="cannon_wrap">
+             <img src="game-images/miscellaneous/cannon.png" alt="cannon">
+           </div>
+           <div class="cannonFireBall_warp">
+             <img src="game-images/ammo/cannonFireball.gif" alt="fire ball">
+           </div>
+
+           <!-- NOTE: crosshairs -->
+           <div class="crosshair-wrapper">
+
+                <div class="crosshair_wrap">
+                    <div id="crosshair" class="crosshair"/>
+                    </div>
+                </div>
+
+                <div class="progress-outer">
+                  <div class="progress-inner">
+                    <div class="progress"></div>
+                  </div>
+                  <span class="progress-value">100</span>
+                </div>
+
+         </div>
+
+      </div><!-- NOTE: gameCanvas_wrap -->
+
+      <!--
+         /////////////// BOTTOM BUMPER ////////////////
+       -->
+
+      <div class="bompers BottomBomper flex_center">
+
+           <div class="weaponsSpeacial_wrap flex_center">
+
+              <div class="weapon_wrap flex">
+                <div class="coverImg  flex_center" id="coverBullet">
+                  &dollar;200
+                </div>
+                <img src="game-images/miscellaneous/bullets-ammo.png" onclick="makeAmmoFijo()" alt="">
+              </div>
+
+              <div class="weapon_wrap flex">
+                <div class="coverImg flex_center" id="coverLife">
+                  <span>&dollar;2000</span>
+                </div>
+                <img src="game-images/miscellaneous/lifeIMG.png" onclick="goForLife(event)" alt="">
+              </div>
+
+              <div class="weapon_wrap flex">
+                <div class="coverImg flex_center" id="coverTimeFreez">
+                  <span>&dollar;750</span>
+                </div>
+                <img src="game-images/miscellaneous/stopClock.png" onclick="freezeTime(false)" alt="">
+              </div>
+
+              <div class="weapon_wrap flex">
+                <div class="coverImg flex_center" id="coverCannon">
+                  <span>&dollar;1000</span>
+                </div>
+                <img src="game-images/miscellaneous/cannon.png" onclick="startCannon()" alt="">
+              </div>
+
+              <div class="weapon_wrap flex">
+                <div class="coverImg flex_center" id="coverNuke">
+                  <span>&dollar;2500</span>
+                </div>
+                <img src="game-images/miscellaneous/nukeButton.png" onclick="goForNuke(event)" alt="">
+              </div>
+
+           </div>
+
+      </div><!-- NOTE: BottomBomper -->
+
+  </div><!-- NOTE: MASTER WRAPER -->
+
+  <!-- NOTE: audio for the game -->
+  <audio id="gunSound">
+        <source src="game-sounds/gunSounds/380gunshotsingle.mp3" type="audio/mp3">
+        <source src="game-sounds/gunSounds/380gunshotsingle.wav" type="audio/wav">
+  </audio>
+  <audio id="zombieDie">
+         <source src="game-sounds/zombieSounds/ZombieGetsAttacked.mp3" type="audio/mp3">
+         <source src="game-sounds/zombieSounds/ZombieGetsAttacked.wav" type="audio/wav">
+  </audio>
+  <audio id="startClockSound">
+          <source src="game-sounds/ambuanceSounds/countDown.mp3" type="audio/mp3">
+          <source src="game-sounds/ambuanceSounds/countDown.wav" type="audio/wav">
+  </audio>
+  <audio id="ambianceAudio">
+          <source src="game-sounds/ambuanceSounds/HorrorAmbiance.mp3" type="audio/mp3">
+          <source src="game-sounds/ambuanceSounds/HorrorAmbiance.wav" type="audio/wav">
+  </audio>
+  <audio id="explosionBoom">
+          <source src="game-sounds/explosion/Explosion_Ultra_Bass-Mark_DiAngelo-1810420658.mp3" type="audio/mp3">
+          <source src="game-sounds/explosion/Explosion_Ultra_Bass-Mark_DiAngelo-1810420658.wav" type="audio/wav">
+  </audio>
+  <audio id="ChingChing">
+          <source src="game-sounds/ambuanceSounds/Cash Register Cha Ching-SoundBible.com-184076484.mp3" type="audio/mp3">
+          <source src="game-sounds/ambuanceSounds/Cash Register Cha Ching-SoundBible.com-184076484.wav" type="audio/wav">
+  </audio>
+  <audio id="missBullet">
+          <source src="game-sounds/gunSounds/miss.wav" type="audio/wav">
+  </audio>
+  <audio id="emptyGun">
+          <source src="game-sounds/gunSounds/154934__klawykogut__empty-gun-shot.wav" type="audio/wav">
+  </audio>
+  <audio id="NukeSiren">
+          <source src="game-sounds/nukeSound/nukeS.mp3" type="audio/mp3">
+  </audio>
+  <audio id="CannonMoving">
+          <source src="game-sounds/cannon/cannonMoving.mp3" type="audio/mp3">
+          <source src="game-sounds/cannon/cannonMoving.wav" type="audio/wav">
+  </audio>
+  <audio id="CannonFire">
+          <source src="game-sounds/cannon/cannonFireBall.mp3" type="audio/mp3">
+          <source src="game-sounds/cannon/cannonFireBall.wav" type="audio/wav">
+  </audio>
+
+<script src="game-js/storage.js"></script>
+<script src="game-js/gameMaster.js"></script>
+<script src="game-js/crosshair.js"></script>
+
+</body>
+</html>

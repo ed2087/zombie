@@ -1,0 +1,460 @@
+@import url('https://fonts.googleapis.com/css?family=Bubblegum+Sans');
+/* ROBOTO */
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+
+/*///////////////////////////////////////////
+                   GLOBAL CSS
+///////////////////////////////////////// */
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+
+  -khtml-user-select: none;
+  -o-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+body{
+  font-size: 1em;
+  line-height: 1.5;
+  font-family: 'Bubblegum Sans', cursive;
+}
+
+a,
+li{
+  text-decoration: none;
+}
+
+img{
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+button,
+.fa{
+  cursor: pointer;
+}
+
+li{
+  list-style: none;
+}
+
+button,
+input,
+select,
+a{
+  outline:none;
+}
+
+.fa-instagram {
+  background: #125688;
+  color: white;
+}
+/*///////////////////////////////////////////
+                   RECICLED CSS
+//////////////////////////////////////////*/
+
+.center{
+  position: absolute;
+  left: 50%;
+  top:50%;
+  transform: translate(-50%,-50%);
+}
+
+.centerFixed{
+  position: fixed;
+  left: 50%;
+  top:50%;
+  transform: translate(-50%,-50%);
+}
+.margin_center{
+  margin: 0 auto;
+}
+
+.flex_center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.flex{
+  display: flex;
+}
+
+.circle{
+  -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+      border-radius: 50%;
+}
+/*///////////////////////////////////////////
+                     MASTER CSS
+//////////////////////////////////////////*/
+.master_wrap{
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  flex-direction: column;
+}
+/*///////////////////////////////////////////
+              TOP USER INFO
+//////////////////////////////////////////*/
+.bompers{
+  height: 18vh;
+  background: rgb(32, 30, 30) url(../../game-images/ambiance/metalBack.jpg) center /cover;
+  padding: 10px 40px;
+  z-index: 100;
+}
+
+.user_info_wrap{
+  border: solid 2px black;
+  justify-content: space-evenly;
+  /* padding: 10px 0; */
+}
+  .user_info_wrap .info_ul_wrap{
+    border: solid 5px rgb(162, 163, 159);
+    margin: 0 20px;
+    height: auto;
+    width: calc(100% / 7 - 60px);
+    text-align: center;
+    padding: 10px;
+    background: white;
+    font-size: 1.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+    .info_ul_wrap .infoText{
+       color: black;
+    }
+    .info_ul_wrap li{
+      color: red;
+    }
+    #timerCountDown{
+      font-size: 4rem;
+    }
+/*///////////////////////////////////////////
+              main game canvas
+//////////////////////////////////////////*/
+.gameCanvas_wrap{
+   height: 64vh;
+   flex-direction: column;
+}
+   /* NOTE: road and inners*/
+
+      .gameCanvas_wrap .Road{
+        height: 100%;
+        background: black url(../../game-images/miscellaneous/road3.jpg) center;
+        border: solid 2px black;
+        position: relative;
+        cursor: url(../../game-images/crosshairs/Crosshairgreenlens.cur), auto;
+      }
+      .Road .announcements{
+        font-size: 6rem;
+        color: white;
+        letter-spacing: 0.3rem;
+        text-transform: capitalize;
+      }
+      .Road .exploxion_wrap{
+         width: 40%;
+         display: none;
+       }
+        .zWrap{
+          display: inline-block;
+          width: 100px;
+          position: absolute;
+          animation-name: zMove;
+          /* z-index: 50; */
+        }
+            @keyframes zMove {
+              0%{
+                transform: translateX(-500px);
+              }
+              100%{
+                transform: translateX(2000px);
+              }
+            }
+              .zWrap .zombie{
+                display: block;
+                max-width: 100%;
+                max-height: 100%;
+                cursor: url(../../game-images/crosshairs/Crosshairredlens.cur), auto;
+              }
+            /* NOTE: loot*/
+              .lootDrop_wrap{
+                position: absolute;
+                width: 80px;
+              }
+              /* NOTE: cannon */
+              .cannon_wrap{
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translate(100%,-50%);
+              }
+                  @keyframes moveCannon {
+                    0%{
+                       transform: translate(100%,-50%);
+                    }
+                    100%{
+                       transform: translate(50%,-50%);
+                    }
+                  }
+                      @keyframes moveBackCannon {
+                        0%{
+                           transform: translate(50%,-50%);
+                        }
+                        100%{
+                           transform: translate(100%,-50%);
+                        }
+                      }
+                /* NOTE: fire ball */
+                .cannonFireBall_warp{
+                  display: none;
+                  position: absolute;
+                  right: 0;
+                  top: 50%;
+                  transform: translate(-30%,-50%);
+                }
+                  .cannonFireBall_warp img{
+                    height: 40vh;
+                  }
+                      @keyframes moveFireball {
+                        0%{
+                          opacity: 1;
+                           transform: translate(-30%,-50%);
+                        }
+                        100%{
+                           opacity: 1;
+                           transform: translate(-350%,-50%);
+                        }
+                      }
+                      @keyframes moveFireballBack {
+                        0%{
+                           opacity: 0;
+                           transform: translate(-350%,-50%);
+                        }
+                        100%{
+                          opacity: 0;
+                           transform: translate(180%,-50%);
+                        }
+                      }
+
+/* NOTE: crosshairs */
+
+.crosshair-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+}
+  .crosshair_wrap{
+     display: inline-block;
+     position: relative;
+     width: 100px;
+     height: 100px;
+  }
+     .crosshair_wrap #crosshair{
+       position: absolute;
+       background: url(../../game-images/img-crosshair/crosshair_small.png) no-repeat center / cover;
+       width: 100%;
+       height: 100%;
+       /* z-index: 80; */
+     }
+  .progress-outer {
+    position: relative;
+    margin: 10px auto;
+    padding: 3px;
+    height: 14px;
+    width: 126px;
+    background: #000;
+    -webkit-border-radius: 5px;
+    z-index: 80;
+  }
+
+    .progress-inner {
+      width: 100px;
+      background: #333;
+      -webkit-border-radius: 2px;
+      padding-right: 5px;
+    }
+
+      .progress {
+        width: 100%;
+        height: 14px;
+        background: #EE2524 url(../../game-images/img-crosshair/red-bullet.png);
+      }
+
+        .progress-value {
+          position: absolute;
+          top: 3px;
+          right: 5px;
+          color: #fff;
+          font-size: 12px;
+          font-weight: bold;
+          font-family: monospace;
+        }
+
+/*///////////////////////////////////////////
+              bottom BUMPERS
+//////////////////////////////////////////*/
+
+  .BottomBomper{
+    position: relative;
+  }
+  /* NOTE:  */
+  .weaponsSpeacial_wrap{
+    width: 100%;
+    height: 100%;
+    /* padding: 10px 40px; */
+    z-index: 500;
+  }
+  .weaponsSpeacial_wrap .weapon_wrap{
+    height: 100%;
+    width: 150px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    margin: 0 10px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    border: solid 4px rgb(112, 112, 112);
+  }
+  .coverImg{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.56);
+    z-index: 10;
+    font-size: 1.3rem;
+    color: white;
+  }
+  .weapon_wrap img{
+   cursor: pointer;
+  }
+/*///////////////////////////////////////////
+              START MENU
+//////////////////////////////////////////*/
+.startMenu{
+  background: black;
+  z-index: 100;
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  overflow: hidden;
+  z-index: 1000;
+  /* display: none; */
+}
+  .starMenuInner_wrap{
+     z-index: 1000;
+     height: 100%;
+     width: 100%;
+     align-items: center;
+     flex-direction: column;
+  }
+    .starMenuInner_wrap #h1_title{
+      color: white;
+      font-size: 6rem;
+      font-style: italic;
+      letter-spacing: 0.5rem;
+      margin: 50px 0;
+      text-shadow: 8px 7px 20px #ce0000;
+    }
+    .starMenuInner_wrap #h2_title{
+      color: white;
+      font-size: 2rem;
+      margin: 20px 0;
+    }
+      .menuOption_wrap{
+        width: 50%;
+        padding: 10px;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+      }
+        .menuOption_wrap #startButton{
+            margin: 10px 0;
+            padding: 10px 0px;
+            width: calc(100% / 3);
+            border-radius: 25px;
+            background: rgba(139, 0, 0, 0.41);
+            color: white;
+            transition: 600ms;
+            border: solid 2px black;
+            font-size: 1.3rem;
+          }
+              #startButton:hover{
+                background: red;
+              }
+                .shade{
+                  background: rgba(0, 0, 0, 0.80);
+                  z-index: 2;
+                  position: absolute;
+                  width: 100%;
+                  height: 100vh;
+                }
+                .video{
+                  z-index: -10;
+                }
+/*///////////////////////////////////////////
+              END GAME MENU
+//////////////////////////////////////////*/
+.gameEndWrap{
+  display: none;
+  background: black url(../../game-images/ambiance/Zombie-Background.jpg);
+  z-index: 100;
+  width: 100%;
+  height: 100vh;
+  z-index: 1000;
+}
+  .gameEndWrap .gameEnd_inner{
+    text-align: center;
+    padding: 2em 4em;
+    background: rgba(0, 0, 0, 0.61);
+  }
+   .gameEnd_inner .getGameEnding{
+     font-size: 3.5rem;
+     color: white;
+   }
+     .gameEnd_inner .gameInfoWrap{
+       padding: 10px;
+     }
+       .gameInfoWrap li{
+         margin: 10px;
+         text-align: left;
+         font-size: 1.3rem;
+       }
+           .gameInfoWrap h2{
+             color: yellow;
+             letter-spacing: 0.3rem;
+           }
+           .gameInfoWrap span{
+             color: rgb(52, 210, 14);
+           }
+           .menuButtons{
+             background: darkred;
+             padding: 10px 40px;
+             border-radius: 25px;
+             color: white;
+             font-size: 1.3rem;
+             margin: 20px 0;
+           }
+           .menuButtons:hover{
+             background: red;
+           }
+           #nextB{
+             display: none;
+           }
